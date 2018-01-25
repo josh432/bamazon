@@ -40,6 +40,8 @@ console.log(table.toString());
 purchase();
 });
 
+
+
 var purchase = function() {
 	var productInfo = {
 		properties: {
@@ -69,13 +71,28 @@ prompt.get(productInfo, function(err, res){
 			console.log(res[0].product_name + ' ' + res[0].price);
 			var saleTotal = res[0].price * productPurchased[0].Quantity;
 			console.log('Total: ' + saleTotal);
-	
+			var newQuantity = res[0].stock_quantity - productPurchased[0].Quantity;
+			console.log(newQuantity);
 
+				connection.query("UPDATE products SET ? WHERE ?",
+					[{stock_quantity:  newQuantity },
+					 {item_id: productPurchased[0].item_id}],
+					function(err, res){
+						if (err) throw err;
+					
+						console.log('');
+						console.log(colors.cyan('Your order has been processed.  Thank you for shopping with us!'));
+						console.log('');
+
+
+
+
+						//connection.end();
+					})
 		}
-
-
 	})
 
 })
 
 }
+
