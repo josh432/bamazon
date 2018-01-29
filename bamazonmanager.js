@@ -92,6 +92,35 @@ var viewInventory = function(){
 	})
 };
 
+var addInventory = function(){
+	var addInv = {
+		properties:{
+			inventoryID: {
+				description: colors.green('Please enter an inventory ID number.')
+			},
+			inventoryAmount: {
+				description: colors.green('Please enter the amount of items to add to inventory.')
+			}
+		},
+	};
+	prompt.start();
+	prompt.get(addInv, function(err, res){
+		var inventoryAdded = {
+			inventoryID: res.inventoryID,
+			inventoryAmount: res.inventoryAmount,
+		}
 
+		inventoryUpdate.push(inventoryAdded);
+		connection.query('UPDATE products SET stock_quantity = (stock_quantity + ?) WHERE item_id = ?;', [inventoryUpdate[0].inventoryAmount, inventoryUpdate[0].inventoryID], function(err, result){
+			if (err) throw err;
+		connection.query('Select * FROM products WHERE item_id = ?', inventoryUpdate[0].inventoryID, function(err, response){
+			console.log('');
+			console.log('The new inventory quantity for ID# ' + inventoryUpdate[0].inventoryID+ ' is ' + response[0].stock_quantity);
+			console.log('');
+			connection.end();
+		})
+	  })
+	})
+}
 
 
