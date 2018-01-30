@@ -72,7 +72,7 @@ prompt.get(productInfo, function(err, res){
 			var saleTotal = res[0].price * productPurchased[0].Quantity;
 			console.log('Total: ' + saleTotal);
 			var newQuantity = res[0].stock_quantity - productPurchased[0].Quantity;
-			console.log(newQuantity);
+			//console.log(newQuantity);
 
 				connection.query("UPDATE products SET ? WHERE ?",
 					[{stock_quantity:  newQuantity },

@@ -34,7 +34,7 @@ prompt.get(managerOptions, function(err, res){
 	} else if(res.mOptions == 3){
 		addInventory();
 	}else if(res.mOptions == 4){
-		addProduct();
+		addNewProduct();
 	} else {
 		console.log("You picked an invalid choice.");
 		connection.end();
@@ -121,6 +121,46 @@ var addInventory = function(){
 		})
 	  })
 	})
-}
+};
+
+var addNewProduct = function(){
+	var newProduct = {
+		properties: {
+			newIdNum:{ description: colors.bold.red('Please enter a unique 5 digit item Id #')},
+			newItemName: {description: colors.bold.red('Please enter the product name to add.')},
+			newItemDept: {description: colors.bold.red('Please enter the department the item belongs.')},
+			newItemPrice:{description: colors.bold.red('Please enter the price of the item.')},
+			newItemQuantity: {description: colors.bold.red('Please enter the amount of items.')},
+		}
+	}
+
+	prompt.start();
+	prompt.get(newProduct, function(err, res){
+		var newItem = {
+			newIdNum: res.newIdNum,
+			newItemName: res.newItemName,
+			newItemPrice: res.newItemPrice,
+			newItemDept: res.newItemDept,
+			newItemQuantity: res.newItemQuantity,
+		};
+	
+
+	updatedProduct.push(newItem);
+	//console.log(newItem);
+
+	connection.query('INSERT INTO products(item_id, product_name, price, department, stock_quantity) VALUES (?, ?, ?, ?, ?);', [updatedProduct[0].newIdNum, updatedProduct[0].newItemName, updatedProduct[0].newItemPrice, updatedProduct[0].newItemDept, updatedProduct[0].newItemQuantity], function(err, result){
+		if(err) throw err;
+		console.log('New item successfully added to inventory.');
+		console.log('');
+		console.log('Item id#: ' + updatedProduct[0].newIdNum);
+		console.log('Product name: ' + updatedProduct[0].newItemName);
+		console.log('Price: ' + updatedProduct[0].newItemPrice);
+		console.log('Department: ' + updatedProduct[0].newItemDept);
+		console.log('Quantity: ' + updatedProduct[0].newItemQuantity);
+	
+	connection.end();
+	})
+  })
+};
 
 
