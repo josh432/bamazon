@@ -126,7 +126,7 @@ var addInventory = function(){
 var addNewProduct = function(){
 	var newProduct = {
 		properties: {
-			newIdNum:{ description: colors.bold.red('Please enter a unique invetory number.')},
+			newIdNum:{ description: colors.bold.red('Please enter a unique inventory number.')},
 			newItemName: {description: colors.bold.red('Please enter the product name to add.')},
 			newItemDept: {description: colors.bold.red('Please enter the department the item belongs.')},
 			newItemPrice:{description: colors.bold.red('Please enter the price of the item.')},
