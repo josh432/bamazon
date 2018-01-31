@@ -20,7 +20,7 @@ connection.connect();
 var managerOptions = {
 	properties: {
 		mOptions: {
-			description: colors.blue('Pick one of the three options: 1)View Products for sale 2)View Low Inventory 3)Add to Inventory 4)Add New Product')
+			description: colors.bold.blue('Pick one of the three options: 1)View Products for sale 2)View Low Inventory 3)Add to Inventory 4)Add New Product')
 		},
 	},
 };
@@ -96,10 +96,10 @@ var addInventory = function(){
 	var addInv = {
 		properties:{
 			inventoryID: {
-				description: colors.green('Please enter an inventory ID number.')
+				description: colors.bold.green('Please enter an inventory ID number.')
 			},
 			inventoryAmount: {
-				description: colors.green('Please enter the amount of items to add to inventory.')
+				description: colors.bold.green('Please enter the amount of items to add to inventory.')
 			}
 		},
 	};
@@ -126,7 +126,7 @@ var addInventory = function(){
 var addNewProduct = function(){
 	var newProduct = {
 		properties: {
-			newIdNum:{ description: colors.bold.red('Please enter a unique 5 digit item Id #')},
+			newIdNum:{ description: colors.bold.red('Please enter a unique invetory number.')},
 			newItemName: {description: colors.bold.red('Please enter the product name to add.')},
 			newItemDept: {description: colors.bold.red('Please enter the department the item belongs.')},
 			newItemPrice:{description: colors.bold.red('Please enter the price of the item.')},

@@ -45,8 +45,8 @@ purchase();
 var purchase = function() {
 	var productInfo = {
 		properties: {
-			item_id:{description: colors.blue('Please enter the ID# of the items you wish to buy.')},
-			Quantity:{description: colors.green('How many items would you like to buy?')}
+			item_id:{description: colors.bold.blue('Please enter the ID# of the items you wish to buy.')},
+			Quantity:{description: colors.bold.green('How many items would you like to buy?')}
 		},
 	};
 
